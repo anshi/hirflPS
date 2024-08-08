@@ -1,0 +1,6 @@
+record(Informin, "$(AREA):$(PS_SN):error")
+{
+	field(DESC, "Error message of PS")
+	field(DTYP, "Ramping PS Inform")
+	field(SCAN, "Passive")
+}

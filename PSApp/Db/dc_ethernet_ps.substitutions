@@ -1,0 +1,12 @@
+# Example for HIRFL/SESRI DC ethernet PS substitutions file
+#   
+# FUNC = AI ( we only use AI for  PS)
+# IP = IP address of the  PS
+# PORT = Port number of the  PS
+# PARM = 4:0.5  ( 4 is version number of Digital PS, 0.5 is query interval in seconds)
+# OUT1 = PV name to write the  PS error code
+file db/dbDigitalDCEthernetPS.db {
+    pattern { AREA, PS_SN, FUNC, IP, PORT, PARM, OUT1 }
+        { "INJLINE", "PS10Q01", "AI", "10.10.2.36", "30000", "4:0.5", "INJLINE:PS10Q01:error.INFORMCODE" }
+        { "INJLINE", "PS10Q02", "AI", "10.10.2.37", "30000", "4:0.5", "INJLINE:PS10Q02:error.INFORMCODE" }
+}

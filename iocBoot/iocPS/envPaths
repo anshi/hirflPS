@@ -1,0 +1,3 @@
+epicsEnvSet("IOC","iocPS")
+epicsEnvSet("TOP","/opt/epics/CSR_PS")
+epicsEnvSet("EPICS_BASE","/opt/epics/base")

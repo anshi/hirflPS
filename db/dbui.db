@@ -1,0 +1,5 @@
+record(ai, "$(AREA):UI:$(PS_ID)")
+{
+	field(DESC, "PS")
+	field(PREC, "4")
+}

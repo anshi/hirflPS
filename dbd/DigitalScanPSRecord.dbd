@@ -1,0 +1,370 @@
+#*************************************************************************
+# Copyright (c) 2013 IMP of CAS, as Operator of SSC-LINAC
+#     National Laboratory.
+# EPICS BASE Versions 3.14.12.2
+# and higher are distributed subject to a Software License Agreement found
+# in file LICENSE that is included with this distribution. 
+# This dbd file used for digital dc power supply 
+#*************************************************************************
+menu(aoOIF) {
+	choice(aoOIF_Full,"Full")
+	choice(aoOIF_Incremental,"Incremental")
+}
+recordtype(DigitalScanPS) {
+	include "dbCommon.dbd" 
+	field(VAL,DBF_DOUBLE) {
+		prompt("return current val from digital PS")
+		promptgroup(GUI_OUTPUT)
+		asl(ASL0)
+		pp(FALSE)
+	}
+	field(OVAL,DBF_DOUBLE) {
+		prompt("Output Value")
+	}
+	field(OPI_CONN,DBF_SHORT){
+		prompt("The number of connections from OPI")
+		asl(ASL0)
+	}
+	field(STATE,DBF_ULONG){
+		prompt("The state of PS")
+		pp(FALSE)
+		asl(ASL0)
+	}
+	field(LSTAT,DBF_ULONG) {
+		prompt("Last state val")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(OROC,DBF_DOUBLE) {
+		prompt("Output Rate of Chang")
+		promptgroup(GUI_OUTPUT)
+		interest(1)
+	}
+	field(COMMAND,DBF_STRING) {
+		prompt("the command for operating PS")
+		asl(ASL0)
+		pp(TRUE)
+		size(10)
+	}
+	field(LCOMM,DBF_STRING) {
+		prompt("the type of ioc, ai or ao")
+		asl(ASL0)
+		pp(FALSE)
+		size(10)
+	}
+	field(FREQ_VAL,DBF_FLOAT) {
+		prompt("data of frequency will send to scan PS")
+		asl(ASL0)
+		pp(TRUE)
+	}
+    field(AMP_VAL,DBF_FLOAT) {
+		prompt("data of amplitude will send to scan PS")
+		asl(ASL0)
+		pp(TRUE)
+	}
+	field(SCAN_END_VAL,DBF_FLOAT){
+		prompt("use to scan mode PS")
+		asl(ASL0)
+		pp(FALSE)
+	}
+	field(SCAN_STEPS, DBF_SHORT){
+		prompt("total scan steps")
+		asl(ASL0)
+		pp(FALSE)
+	}
+	field(SCAN_START, DBF_SHORT){
+		prompt("a start command from scan PV")
+		asl(ASL0)
+		pp(TRUE)
+	}
+
+	field(IP_ADDR,DBF_STRING) {
+		prompt("ip address of PS")
+		pp(FALSE)
+		size(16)
+	}
+	field(PORT,DBF_STRING) {
+		prompt("ip port of PS")
+		pp(FALSE)
+		size(10)
+	}
+	field(DEV_CHAN,DBF_STRING) {
+		prompt("channel of device")
+		pp(FALSE)
+		size(10)
+	}
+	field(OUT,DBF_OUTLINK) {
+		prompt("Output Specification")
+		interest(1)
+	}
+	field(OUT1,DBF_OUTLINK)
+	{
+		prompt("Output Specification")
+                interest(1)
+	}
+	field(OUT2,DBF_OUTLINK)
+        {
+                prompt("Output Specification")
+                interest(1)
+        }
+	field(DOL,DBF_INLINK) {
+		prompt("Desired Output Loc")
+		promptgroup(GUI_OUTPUT)
+		interest(1)
+	}
+	field(OMSL,DBF_MENU) {
+		prompt("Output Mode Select")
+		promptgroup(GUI_OUTPUT)
+		interest(1)
+		menu(menuOmsl)
+	}
+	field(OIF,DBF_MENU) {
+		prompt("Out Full/Incremental")
+		promptgroup(GUI_OUTPUT)
+		interest(1)
+		menu(aoOIF)
+	}
+	field(PREC,DBF_SHORT) {
+		prompt("Display Precision")
+		promptgroup(GUI_DISPLAY)
+		interest(1)
+	}
+	field(LINR,DBF_MENU) {
+		prompt("Linearization")
+		promptgroup(GUI_CONVERT)
+		special(SPC_LINCONV)
+		pp(TRUE)
+		interest(1)
+		menu(menuConvert)
+	}
+	field(EGUF,DBF_DOUBLE) {
+		prompt("Eng Units Full")
+		promptgroup(GUI_CONVERT)
+		special(SPC_LINCONV)
+		pp(TRUE)
+		interest(1)
+	}
+	field(EGUL,DBF_DOUBLE) {
+		prompt("Eng Units Low")
+		promptgroup(GUI_CONVERT)
+		special(SPC_LINCONV)
+		pp(TRUE)
+		interest(1)
+	}
+	field(EGU,DBF_STRING) {
+		prompt("Engineering Units")
+		promptgroup(GUI_DISPLAY)
+		interest(1)
+		size(16)
+	}
+	field(ROFF,DBF_LONG) {
+		prompt("Raw Offset, obsolete")
+		pp(TRUE)
+		interest(2)
+	}
+	field(EOFF,DBF_DOUBLE) {
+		prompt("EGU to Raw Offset")
+		promptgroup(GUI_CONVERT)
+		pp(TRUE)
+		interest(2)
+	}
+	field(ESLO,DBF_DOUBLE) {
+		prompt("EGU to Raw Slope")
+		promptgroup(GUI_CONVERT)
+		pp(TRUE)
+		interest(2)
+		initial("1")
+	}
+	field(DRVH,DBF_DOUBLE) {
+		prompt("Drive High Limit")
+		promptgroup(GUI_OUTPUT)
+		pp(TRUE)
+		interest(1)
+	}
+	field(DRVL,DBF_DOUBLE) {
+		prompt("Drive Low Limit")
+		promptgroup(GUI_OUTPUT)
+		pp(TRUE)
+		interest(1)
+	}
+	field(HOPR,DBF_DOUBLE) {
+		prompt("High Operating Range")
+		promptgroup(GUI_DISPLAY)
+		interest(1)
+	}
+	field(LOPR,DBF_DOUBLE) {
+		prompt("Low Operating Range")
+		promptgroup(GUI_DISPLAY)
+		interest(1)
+	}
+	field(AOFF,DBF_DOUBLE) {
+		prompt("Adjustment Offset")
+		promptgroup(GUI_CONVERT)
+		pp(TRUE)
+		interest(1)
+	}
+	field(ASLO,DBF_DOUBLE) {
+		prompt("Adjustment Slope")
+		promptgroup(GUI_CONVERT)
+		pp(TRUE)
+		interest(1)
+	}
+	field(HIHI,DBF_DOUBLE) {
+		prompt("Hihi Alarm Limit")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+	}
+	field(LOLO,DBF_DOUBLE) {
+		prompt("Lolo Alarm Limit")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+	}
+	field(HIGH,DBF_DOUBLE) {
+		prompt("High Alarm Limit")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+	}
+	field(LOW,DBF_DOUBLE) {
+		prompt("Low Alarm Limit")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+	}
+	field(HHSV,DBF_MENU) {
+		prompt("Hihi Severity")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+		menu(menuAlarmSevr)
+	}
+	field(LLSV,DBF_MENU) {
+		prompt("Lolo Severity")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+		menu(menuAlarmSevr)
+	}
+	field(HSV,DBF_MENU) {
+		prompt("High Severity")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+		menu(menuAlarmSevr)
+	}
+	field(LSV,DBF_MENU) {
+		prompt("Low Severity")
+		promptgroup(GUI_ALARMS)
+		pp(TRUE)
+		interest(1)
+		menu(menuAlarmSevr)
+	}
+	field(HYST,DBF_DOUBLE) {
+		prompt("Alarm Deadband")
+		promptgroup(GUI_ALARMS)
+		interest(1)
+	}
+	field(ADEL,DBF_DOUBLE) {
+		prompt("Archive Deadband")
+		promptgroup(GUI_DISPLAY)
+		interest(1)
+	}
+	field(MDEL,DBF_DOUBLE) {
+		prompt("Monitor Deadband")
+		promptgroup(GUI_DISPLAY)
+		interest(1)
+	}
+	field(RVAL,DBF_LONG) {
+		prompt("Current Raw Value")
+		pp(TRUE)
+	}
+	field(ORAW,DBF_LONG) {
+		prompt("Previous Raw Value")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(RBV,DBF_LONG) {
+		prompt("Readback Value")
+		special(SPC_NOMOD)
+	}
+	field(ORBV,DBF_LONG) {
+		prompt("Prev Readback Value")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(PVAL,DBF_DOUBLE) {
+		prompt("Previous value")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(LALM,DBF_DOUBLE) {
+		prompt("Last Value Alarmed")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(ALST,DBF_DOUBLE) {
+		prompt("Last Value Archived")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(MLST,DBF_DOUBLE) {
+		prompt("Last Val Monitored")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(PBRK,DBF_NOACCESS) {
+		prompt("Ptrto brkTable")
+		special(SPC_NOMOD)
+		interest(4)
+		extra("void *	pbrk")
+	}
+	field(INIT,DBF_SHORT) {
+		prompt("Initialized?")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(LBRK,DBF_SHORT) {
+		prompt("LastBreak Point")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(SIOL,DBF_OUTLINK) {
+		prompt("Sim Output Specifctn")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(SIML,DBF_INLINK) {
+		prompt("Sim Mode Location")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(SIMM,DBF_MENU) {
+		prompt("Simulation Mode")
+		interest(1)
+		menu(menuYesNo)
+	}
+	field(SIMS,DBF_MENU) {
+		prompt("Sim mode Alarm Svrty")
+		promptgroup(GUI_INPUTS)
+		interest(2)
+		menu(menuAlarmSevr)
+	}
+	field(IVOA,DBF_MENU) {
+		prompt("INVALID output action")
+		promptgroup(GUI_OUTPUT)
+		interest(2)
+		menu(menuIvoa)
+	}
+	field(IVOV,DBF_DOUBLE) {
+		prompt("INVALID output value")
+		promptgroup(GUI_OUTPUT)
+		interest(2)
+	}
+	field(OMOD,DBF_UCHAR) {
+		prompt("Was OVAL modified?")
+		special(SPC_NOMOD)
+	}
+}
+

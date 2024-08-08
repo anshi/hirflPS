@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "epicsexport.h": "c",
+        "epicsmutex.h": "c",
+        "dbscan.h": "c",
+        "epicsthread.h": "c",
+        "tcp.h": "c",
+        "alarm.h": "c",
+        "recsup.h": "c",
+        "ps.h": "c",
+        "stdio.h": "c",
+        "cmath": "c",
+        "dbaccess.h": "c",
+        "epicstime.h": "c",
+        "epicstypes.h": "c",
+        "compilerdependencies.h": "c",
+        "devsup.h": "c",
+        "recgbl.h": "c"
+    }
+}

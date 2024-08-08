@@ -1,0 +1,16 @@
+include "psRecord.dbd"
+include "DigitalDCPSaoRecord.dbd"
+include "InforminRecord.dbd"
+include "DigitalScanPSRecord.dbd"
+
+device(ps,CONSTANT,devPsSoft,"PSSoft")
+device(DigitalDCPSao, INST_IO, devDigitalPSRampInt, "Digital Ramping PS")
+device(Informin, INST_IO, devDigitalPSRampInform, "Ramping PS Inform")
+device(DigitalDCPSao,INST_IO,devDigitalPSInt, "Digital PS INTR")
+device(DigitalDCPSao,INST_IO,devDigitalDCPSInt, "Digital DC PS INTR")
+device(DigitalScanPS, INST_IO, devDigitalScanPSInt, "Digital Scan PS INTR")
+device(waveform, INST_IO, devDPRAMwv, "WRDM DPRAM PV")
+
+device(DigitalDCPSao, INST_IO, devAPMDigitalPS, "APM Digital PS")
+device(DigitalDCPSao, INST_IO, devHarmonicPSSoft, "Harmonic wave PS")
+device(DigitalDCPSao, INST_IO, devDigitalDCPSNew, "Digital DC PS New")

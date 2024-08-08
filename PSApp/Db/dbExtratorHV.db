@@ -1,0 +1,6 @@
+record(waveform, "$(AREA):ESPOWER$(HV_ID):EVENT:AO")
+{
+        field(DESC, "Trigger event and set_point for ES")
+        field(NELM, "4000")
+        field(FTVL, "CHAR")
+}

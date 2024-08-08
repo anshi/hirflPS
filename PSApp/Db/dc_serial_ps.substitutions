@@ -1,0 +1,12 @@
+# Example for HIRFL/SESRI DC Serial Port PS substitutions file
+#   
+# FUNC = AI ( we only use AI for  PS)
+# IP = IP address of the Serial Server
+# PORT = Port number of the  Serial Server arranged for the  PS
+# PARM = 1  ( 1 is query interval in seconds)
+# OUT1 = PV name to write the  PS error code
+file db/dbDigitalDCSerialPS.db {
+    pattern { AREA, PS_SN, FUNC, IP, PORT, PARM, OUT1 }
+        { "LINAC", "PS10Q01", "AI", "10.10.2.36", "5301", "1", "LINAC:PS10Q01:error.INFORMCODE" }
+        { "LINAC", "PS10Q02", "AI", "10.10.2.36", "5302", "1", "LINAC:PS10Q02:error.INFORMCODE" }
+}

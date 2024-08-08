@@ -1,0 +1,11 @@
+record(DigitalDCPSao, "$(AREA):$(PS_ID):$(FUNC)")
+{
+	field(DESC, "Send command to ps device")
+	field(DTYP, "Harmonic wave PS")
+	field(PREC, "4")
+	field(LCOMM, "$(FUNC)")
+	field(SCAN, "Passive")
+	field(SIOL, "$(OutLinka) PP")
+    field(OUT1, "$(OutLinkb) PP")
+    field(OUT2, "$(OutLinkc) PP")
+}
