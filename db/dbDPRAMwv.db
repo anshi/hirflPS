@@ -1,8 +1,0 @@
-record(waveform, "$(AREA):WRDM:$(DEV_ID)")
-{
-	field(DESC, "PS")
-	field(FTVL, "UINT")
-    field(NELM, 32)
-    field(DTYP, "WRDM DPRAM PV")
-	field(SCAN, "Passive")
-}
