@@ -28,6 +28,6 @@ record(DigitalDCPSao, "$(AREA):$(PS_SN):AI")
 record(Informin, "$(AREA):$(PS_SN):error")
 {
 	field(DESC, "Error message of PS")
-	field(DTYP, "Ramping PS Inform")
+	field(DTYP, "PS Inform")
 	field(SCAN, "Passive")
 }

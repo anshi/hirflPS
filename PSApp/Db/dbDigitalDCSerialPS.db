@@ -15,6 +15,6 @@ record(DigitalDCPSao, "$(AREA):$(PS_SN):AI")
 record(Informin, "$(AREA):$(PS_SN):error")
 {
 	field(DESC, "Error message of PS")
-	field(DTYP, "PS status information")
+	field(DTYP, "PS Inform")
 	field(SCAN, "Passive")
 }
